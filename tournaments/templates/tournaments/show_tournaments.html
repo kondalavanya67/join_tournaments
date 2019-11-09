@@ -1,0 +1,23 @@
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>List of all Tournaments</h1>
+{% for tournament in tournaments %}
+    Name : {{ tournament.name }}<br>
+    Description: {{ tournament.description }}<br>
+    Location: {{ tournament.location }}<br>
+    Start Date: {{ tournament.start_date | filter_date }}<br>
+    End Date: {{ tournament.end_date | filter_date }}<br>
+
+    <h3>
+        <a href="{% url 'tournaments:join_tournament' tournament.pk  tournament.name tournament.start_date tournament.end_date tournament.location %}">
+            Click here to join</a></h3>
+{% endfor %}
+<br>
+</body>
+</html>
