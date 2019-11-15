@@ -1,15 +1,59 @@
+
+{% load widget_tweaks %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<title>JOIN TOURNAMENTS</title>
+	<meta charset="UTF-8">
+ <link rel="stylesheet" href="{% static 'tournaments/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'tournaments/css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'tournaments/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'tournaments/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'tournaments/css/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'tournaments/css/owl.carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'tournaments/css/themify-icons.css' %}">
+<style>
+body {
+	background-image: url('{% static "tournaments/img/background.jpg"%}');
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+</style>
+
+
 </head>
-<body>
-<form method="post">
-    {% csrf_token %}
-    <input type="number" value="{{ pk }}" hidden="true" name="pk">
-    {{ form.as_p }}<br>
-    <input type="submit" value="Submit">
-</form>
+<body >
+
+<div class="main" style="padding-top: 180px">
+    <div class="container-form">
+        <div class="booking-content">
+            <div class="booking-form">
+
+                <form method="post" class="booking-form"  >
+                    {% csrf_token %}
+                    <div class="hero-content" style="padding:0px 0px 30px 0px;  font-size:35px; color: black;">Join Tournaments</div>
+                        <div class="form-group form-input">
+                            <label class="form-label">
+                                 <input class="form-label" type="number" value="{{ pk }}" hidden="true" name="pk">
+                            </label>
+                                {{ form.as_p }}
+                            {% for error in field.errors %}
+                                <p style="font-size: 15px; color: red">{{ error }}</p>
+                            {% endfor %}
+                            <br>
+                        </div>
+
+                        <div class="form-submit"  style="padding-left: 110px">
+                            <input type="submit"   value="Submit">
+                        </div>
+
+                </form>
+                    </div>
+         </div>
+    </div>
+</div>
 </body>
 </html>

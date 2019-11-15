@@ -1,23 +1,102 @@
 {% load custom_filters %}
+{% load widget_tweaks %}
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>List of all Tournaments</h1>
-{% for tournament in tournaments %}
-    Name : {{ tournament.name }}<br>
-    Description: {{ tournament.description }}<br>
-    Location: {{ tournament.location }}<br>
-    Start Date: {{ tournament.start_date | filter_date }}<br>
-    End Date: {{ tournament.end_date | filter_date }}<br>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <h3>
-        <a href="{% url 'tournaments:join_tournament' tournament.pk  tournament.name tournament.start_date tournament.end_date tournament.location %}">
+            <h1   style="text-align: center;font-size: 250 px;color: white">List of Tournaments</h1>
+
+    <link rel="stylesheet" href="{% static 'tournaments/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'tournaments/css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'tournaments/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'tournaments/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'tournaments/css/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'tournaments/css/owl.carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'tournaments/css/themify-icons.css' %}">
+
+    <style>
+body {
+
+    background-color: darkblue;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 50%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 80%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: whitesmoke;
+}
+</style>
+
+</head>
+<body style="text-align: center;font-family:Courier New">
+
+<br><br>
+
+ <div class="row">
+                {% for tournament in tournaments %}
+                <div class="column">
+                    <div class="card">
+                Name : {{ tournament.name }}<br>
+                Description: {{ tournament.description }}<br>
+                Location: {{ tournament.location }}<br>
+                Start Date: {{ tournament.start_date | filter_date }}<br>
+                End Date: {{ tournament.end_date | filter_date }}<br>
+
+                 <h3 >
+             <a href="{% url 'tournaments:join_tournament' tournament.pk  tournament.name tournament.start_date tournament.end_date tournament.location %}">
             Click here to join</a></h3>
-{% endfor %}
-<br>
+
+                     </div>
+                <br>
+</div>
+
+                {% endfor %}
+
+
+</div>
+
 </body>
 </html>

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tournaments',
     'tournaments.templatetags',
+    'widget_tweaks',
     'rest_framework'
 ]
 
